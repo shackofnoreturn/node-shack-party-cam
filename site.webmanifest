@@ -19,7 +19,6 @@
         }
     ],
 
-    // TODO - Adjust theme colors allong with those of index.html
     "theme_color": "#ffffff",
     "background_color": "#ffffff",
     "display": "standalone"
