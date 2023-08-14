@@ -33,8 +33,27 @@
     <link rel="stylesheet" href="css/style.css"> 
 </head>
 <body>
+    
+    <!-- Camera -->
+    <main id="camera">
+
+        <!-- Camera sensor -->
+        <canvas id="camera--sensor"></canvas>
+        
+        <!-- Camera view -->
+        <video id="camera--view" autoplay playsinline></video>
+        
+        <!-- Camera output -->
+        <img src="//:0" alt="" id="camera--output">
+
+        <!-- Camera trigger -->
+        <button id="camera--trigger">Take a picture</button>
+        <button id="save--trigger" onclick="onUpload();">Save picture</button>
+    </main>
+
     <!-- Reference to your JavaScript file -->
     <!-- TODO - Create application file -->
     <script src="app.js"></script>
+
 </body>
 </html>
