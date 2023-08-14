@@ -1,2 +1,5 @@
-# web-party-cam
- Take a picture on the local network and display it on a slideshow
+# camera-app
+Super awesome camera web app built with HTML, CSS, and JS.
+
+## How to run
+npm start

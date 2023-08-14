@@ -1,0 +1,11 @@
+{
+  "name": "node-shack-party-cam",
+  "version": "1.0.0",
+  "description": "Take pictures on the local network and present them in a neat slideshow",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jens Ackou",
+  "license": "ISC"
+}
