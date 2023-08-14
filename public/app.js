@@ -23,3 +23,20 @@ function startCamera() {
 
 // Start the video stream when the window loads
 window.addEventListener("load", startCamera, false);
+
+
+
+  fetch("http://localhost:3000/upload", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'text/plain',
+    },
+    body: "HELLOOO",
+  })
+    .then(response => response.text())
+    .then(data => {
+      console.log('Response from server:', data);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
