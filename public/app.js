@@ -11,8 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
         saveTrigger   = document.querySelector("#save--trigger");   
 
     // Access the device camera and stream to cameraView
-    function startCamera() {
-        navigator.mediaDevices
+    async function startCamera() {
+        await navigator.mediaDevices
             .getUserMedia(constraints)
             .then(function(stream) {
                 track = stream.getTracks()[0];
