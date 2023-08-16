@@ -31,5 +31,5 @@ app.post("/upload", (req, res) => {
 var server = app.listen(port, function () {
     var host = server.address().address;
     var port = server.address().port;
-    console.log('listening at http://%s:%s', host, port);
+    console.log('Server is running at http://%s:%s', host, port);
 });
