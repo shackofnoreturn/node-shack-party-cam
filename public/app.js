@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     var constraints = { video: { facingMode: "user" }, audio: false };
     var track = null;
 
-    // Define constants
+    // Defining HTML elements
     const cameraView  = document.querySelector("#camera--view"),
         cameraOutput  = document.querySelector("#camera--output"),
         cameraSensor  = document.querySelector("#camera--sensor"),
@@ -35,24 +35,36 @@ document.addEventListener("DOMContentLoaded", () => {
     // Start the video stream when the window loads
     window.addEventListener("load", startCamera, false);
 
-    saveTrigger.onclick = function() {
-        
-    };
+    saveTrigger.addEventListener("click", async () => {
+        const formData = new FormData();
+  
+        // Replace "test.jpg" with the actual image file name
+        formData.append("image", new Blob(["test"]), "test.jpg");
 
-    fetch("http://localhost:3000/upload", {
-        method: 'POST',
-        headers: {
-        'Content-Type': 'text/plain',
-        },
-        body: "HELLOOO",
-    })
-        .then(response => response.text())
-        .then(data => {
-        console.log('Response from server:', data);
-        })
-        .catch(error => {
-        console.error('Error:', error);
+        await fetch('/upload', { 
+            method: 'POST', 
+            headers: { 
+                "content-type": "application/json"
+            }, 
+            body: JSON.stringify({ file: cameraOutput }) 
         });
 
-        
+        /*
+        fetch("http://localhost:3000/upload", {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'text/plain',
+            },
+            body: "HELLOOO",
+        })
+            .then(response => response.text())
+            .then(data => {
+            console.log('Response from server:', data);
+            })
+            .catch(error => {
+            console.error('Error:', error);
+            });
+            */
     });
+
+});
