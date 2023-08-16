@@ -1,5 +1,6 @@
 const express    = require("express");
 const bodyParser = require('body-parser');
+const fs = require('fs');
 
 // Defining constants
 const app  = express();
@@ -11,18 +12,19 @@ app.use(express.static('public'));
 
 // Upload endpoint
 app.post("/upload", (req, res) => {
-    const img = req.body.file;
-    var regex = /^data:.+\/(.+);base64,(.*)$/;
+    const { image } = req.body;
+    const base64Data = image.replace(/^data:image\/jpeg;base64,/, '');
+    const filename = `captured_${Date.now()}.jpg`;
 
-    var matches = string.match(regex);
-    var ext = matches[1];
-    var data = matches[2];
-    var buffer = Buffer.from(data, 'base64'); //file buffer
-      
-     fs.writeFileSync('imagename.jpg' + ext, buffer); //if you do not need to save to file, you can skip this step.
-     
-     // return response to client
-     res.send('String received successfully');
+    fs.writeFile(filename, base64Data, 'base64', (err) => {
+        if (err) {
+            console.error('Error saving image:', err);
+            res.status(500).send('Error saving image.');
+        } else {
+            console.log('Image saved:', filename);
+            res.status(200).send('Image saved successfully.');
+        }
+    });
 });
 
 // Start server
