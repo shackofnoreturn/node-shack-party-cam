@@ -7,8 +7,21 @@ app.use(express.static('public'));
 
 app.post("/upload", (req, res) => {
     console.log(`Upload endpoint reached.`);
-    console.log(req.body);
-    res.send('String received successfully');
+    
+    const img = req.body.file;
+     var regex = /^data:.+\/(.+);base64,(.*)$/;
+
+     var matches = string.match(regex);
+     var ext = matches[1];
+     var data = matches[2];
+     var buffer = Buffer.from(data, 'base64'); //file buffer
+      
+     //do whatever you want with the buffer
+
+     fs.writeFileSync('imagename.jpg' + ext, buffer); //if you do not need to save to file, you can skip this step.
+     
+     // return res to client
+     res.send('String received successfully');
 });
 
 // Start server
