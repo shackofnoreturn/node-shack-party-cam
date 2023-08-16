@@ -1,7 +1,7 @@
 const express = require("express");
-
+const bodyParser = require('body-parser');
 const app  = express();
-
+app.use(bodyParser.json({ limit: '10mb' }));
 // Set up static file serving
 app.use(express.static('public'));
 
