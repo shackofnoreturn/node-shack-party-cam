@@ -7,8 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const cameraView  = document.querySelector("#camera--view"),
         cameraOutput  = document.querySelector("#camera--output"),
         cameraSensor  = document.querySelector("#camera--sensor"),
-        cameraTrigger = document.querySelector("#camera--trigger"),
-        saveTrigger   = document.querySelector("#save--trigger");   
+        cameraTrigger = document.querySelector("#camera--trigger");   
 
     // Access the device camera and stream to cameraView
     async function startCamera() {
@@ -34,37 +33,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Start the video stream when the window loads
     window.addEventListener("load", startCamera, false);
-
-    saveTrigger.addEventListener("click", async () => {
-        const formData = new FormData();
-  
-        // Replace "test.jpg" with the actual image file name
-        formData.append("image", new Blob(["test"]), "test.jpg");
-
-        await fetch('/upload', { 
-            method: 'POST', 
-            headers: { 
-                "content-type": "application/json"
-            }, 
-            body: JSON.stringify({ file: cameraOutput }) 
-        });
-
-        /*
-        fetch("http://localhost:3000/upload", {
-            method: 'POST',
-            headers: {
-            'Content-Type': 'text/plain',
-            },
-            body: "HELLOOO",
-        })
-            .then(response => response.text())
-            .then(data => {
-            console.log('Response from server:', data);
-            })
-            .catch(error => {
-            console.error('Error:', error);
-            });
-            */
-    });
-
 });
