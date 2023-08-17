@@ -11,13 +11,20 @@ const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif'];
 
 // Application configuration
 app.use(bodyParser.json({ limit: '10mb' }));
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, "public")));
 
 // Upload endpoint
 app.post("/upload", (req, res) => {
+    const timestamp = Date.now();
+    const imageName = `image_${timestamp}.jpg`;
+    const filename = path.join(__dirname, "public/captures", imageName);
+
     const { image } = req.body;
     const base64Data = image.replace(/^data:image\/jpeg;base64,/, '');
-    const filename = `captured_${Date.now()}.jpg`;
+
+    if (!image) {
+        return res.status(400).send("No image file provided.");
+    }
 
     fs.writeFile(filename, base64Data, 'base64', (err) => {
         if (err) {
