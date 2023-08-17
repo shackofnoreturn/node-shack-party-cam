@@ -3,3 +3,6 @@
 
 # Node
 node_modules
+
+# Captured images
+public/captures/*
