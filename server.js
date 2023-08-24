@@ -57,6 +57,27 @@ app.get('/get_image_list', (req, res) => {
     });
 });
 
+app.get('/get_image_random', (req, res) => {
+    console.log("Searching this folder for images", imageFolderPath);
+    fs.readdir(imageFolderPath, (err, files) => {
+        if (err) {
+            console.error('Error reading image folder:', err);
+            res.status(500).send('Internal Server Error');
+            return;
+        }
+
+        const imageList = files.filter(file => imageExtensions.includes(path.extname(file).toLowerCase()));
+        
+        // Generate a random index within the range of the imageList array length
+        const randomIndex = Math.floor(Math.random() * imageList.length);
+        
+        // Get the image URL at the random index
+        const randomImage = imageList[randomIndex];
+
+        res.json(randomImage);
+    });
+});
+
 // Start server
 var server = app.listen(port, function () {
     var host = server.address().address;
