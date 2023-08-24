@@ -49,5 +49,11 @@ cameraTrigger.addEventListener('click', async () => {
     }
 });
 
+const loadingScreen = document.querySelector(".loading-screen");
+// Wait for a minimum display time
+setTimeout(() => {
+    loadingScreen.classList.add("hidden"); // Apply fade-out effect
+}, 5000); // Minimum display time in milliseconds
+
 // Start camera when page loads
 window.onload = startCamera;

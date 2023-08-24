@@ -57,3 +57,42 @@ html, body{
     right: 20px;
     z-index: 2;
 }
+
+/* Styles for the loading screen */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out; /* Transition for opacity */
+    z-index: 9999;
+  }
+  
+  /* Styles for the logo */
+  .logo {
+    opacity: 0; /* Initial opacity */
+    animation: fadeLogo 5s forwards; /* Animation name and duration */
+  }
+  
+  @keyframes fadeLogo {
+    0%, 100% {
+      opacity: 0; /* Start and end opacity */
+    }
+    50% {
+      opacity: 1; /* Fade in to full opacity */
+    }
+  }
+  
+  
+  /* Hide loading screen with fade-out effect */
+  .loading-screen.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
