@@ -21,6 +21,7 @@ async function startCamera() {
 }
 
 // Take a picture when cameraTrigger is tapped
+// TODO - Simulate flash by lighting up screen
 cameraTrigger.addEventListener('click', async () => {
     cameraSensor.width = cameraView.videoWidth;
     cameraSensor.height = cameraView.videoHeight;
